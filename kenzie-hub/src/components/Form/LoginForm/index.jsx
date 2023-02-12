@@ -31,6 +31,8 @@ function LoginForm({setUser}) {
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
+      localStorage.setItem("@usename", response.data.user.name)
+      localStorage.setItem("@usemodule", response.data.user.course_module)
       navigate("/Dashboard")
     } catch (error) {
       console.error(error);

@@ -1,20 +1,11 @@
 import StyledHeader from "./style.js";
-import logo from "../../assets/imagens/Logo.svg";
 
-
-function Header(sendBack, setUser) {
-  function logOut() {
-    setUser(null);
-    localStorage.clear();
-    sendBack();
-  }
+function Header({ userName, uderModule }) {
+ 
   return (
     <StyledHeader>
-      <div>
-        <img src={logo} alt="logo kenzie hub" />
-        <button onClick={logOut}>Sair</button>
-      </div>
-      <div></div>
+      <h2>{userName}</h2>
+      <p> {uderModule} </p>
     </StyledHeader>
   );
 }
