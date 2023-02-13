@@ -15,6 +15,7 @@ const schema = yup.object({
 
 function LoginForm({ setUser }) {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const {
@@ -24,25 +25,6 @@ function LoginForm({ setUser }) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const ref = useRef(null);
-
-  useEffect(() => {
-    function showInputPassword(event) {
-      if (
-        event.target.className == "eye_img" &&
-        ref.current.type == "password"
-      ) {
-        ref.current.type = "text";
-      } else if (
-        event.target.className == "eye_img" &&
-        ref.current.type == "text"
-      ) {
-        ref.current.type = "password";
-      }
-    }
-    window.addEventListener("mousedown", showInputPassword);
-  }, []);
 
   async function loginUser(data) {
     try {
@@ -74,14 +56,21 @@ function LoginForm({ setUser }) {
       <label htmlFor="password">Senha</label>
       <input
         className="input_password"
-        type="password"
+        type={showPassword ? "text" : "password"}
         id="password"
         placeholder="Digite sua senha"
         {...register("password")}
-        ref={ref}
+       
       />
       {<p className="error_msg-p2"> {errors.password?.message} </p>}
-      <img className="eye_img" src={eye} alt="eye" />
+      <img
+        className="eye_img"
+        src={eye}
+        alt="eye"
+        onClick={() => {
+          setShowPassword(!showPassword);
+        }}
+      />
       <button className="btn_entry">Entrar</button>
     </StyledForm>
   );

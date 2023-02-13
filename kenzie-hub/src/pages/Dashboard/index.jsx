@@ -1,7 +1,7 @@
 import logo from "../../assets/imagens/Logo.svg";
 import Header from "../../components/Header";
 import StyledMain from "./style.js";
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import api from "../../services/api.js";
 
 function Dashboard({ sendBack, setUser, user }) {
@@ -13,14 +13,6 @@ function Dashboard({ sendBack, setUser, user }) {
     localStorage.clear();
     sendBack();
   }
-  console.log(theWidth);
-
-  useEffect(() => {
-    setTheWidth(innerWidth);
-  }, [theWidth]);
-
-  const widthMedia = window.screen.width;
-  console.log(innerWidth);
 
   useEffect(() => {
     async function logedUser() {
