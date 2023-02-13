@@ -13,9 +13,9 @@ const schema = yup.object({
   password: yup.string().required("* Campo obrigatório"),
 });
 
-function LoginForm({setUser}) {
+function LoginForm({ setUser }) {
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
   const {
     register,
@@ -24,14 +24,25 @@ function LoginForm({setUser}) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const refEye = useRef(null)
-  
+
+  const ref = useRef(null);
+
   useEffect(() => {
-    function showInputPassword(event){
-      console.log(refEye)
+    function showInputPassword(event) {
+      if (
+        event.target.className == "eye_img" &&
+        ref.current.type == "password"
+      ) {
+        ref.current.type = "text";
+      } else if (
+        event.target.className == "eye_img" &&
+        ref.current.type == "text"
+      ) {
+        ref.current.type = "password";
+      }
     }
-    window.addEventListener('mousedown', showInputPassword)
-  }, [])
+    window.addEventListener("mousedown", showInputPassword);
+  }, []);
 
   async function loginUser(data) {
     try {
@@ -40,9 +51,9 @@ function LoginForm({setUser}) {
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
-      localStorage.setItem("@usename", response.data.user.name)
-      localStorage.setItem("@usemodule", response.data.user.course_module)
-      navigate("/Dashboard")
+      localStorage.setItem("@usename", response.data.user.name);
+      localStorage.setItem("@usemodule", response.data.user.course_module);
+      navigate("/Dashboard");
     } catch (error) {
       console.error(error);
       toast.error("Ops, dados inválidos!");
@@ -67,9 +78,10 @@ function LoginForm({setUser}) {
         id="password"
         placeholder="Digite sua senha"
         {...register("password")}
+        ref={ref}
       />
-      {<p className="error_msg-p2" > {errors.password?.message} </p>}
-      <img className="eye_img" src={eye} alt="eye" ref={refEye} />
+      {<p className="error_msg-p2"> {errors.password?.message} </p>}
+      <img className="eye_img" src={eye} alt="eye" />
       <button className="btn_entry">Entrar</button>
     </StyledForm>
   );
