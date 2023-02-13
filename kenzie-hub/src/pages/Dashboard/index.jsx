@@ -1,22 +1,29 @@
 import logo from "../../assets/imagens/Logo.svg";
 import Header from "../../components/Header";
 import StyledMain from "./style.js";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import api from "../../services/api.js";
 
 function Dashboard({ sendBack, setUser, user }) {
   const userName = localStorage.getItem("@usename");
-  const uderModule = localStorage.getItem("@usemodule");
+  const userModule = localStorage.getItem("@usemodule");
 
   function logOut() {
     setUser(null);
     localStorage.clear();
     sendBack();
   }
+  console.log(theWidth);
+
+  useEffect(() => {
+    setTheWidth(innerWidth);
+  }, [theWidth]);
+
+  const widthMedia = window.screen.width;
+  console.log(innerWidth);
 
   useEffect(() => {
     async function logedUser() {
-      
       const token = localStorage.getItem("@TOKEN");
 
       try {
@@ -26,7 +33,6 @@ function Dashboard({ sendBack, setUser, user }) {
           },
         });
         setUser(response.data);
-
       } catch (error) {
         console.error(error);
       }
@@ -38,14 +44,14 @@ function Dashboard({ sendBack, setUser, user }) {
     <StyledMain>
       <nav className="box_logout">
         <img src={logo} alt="logo kenzie hub" />
-        <button onClick={logOut} >Sair</button>
+        <button onClick={logOut}>Sair</button>
       </nav>
       <Header
         sendBack={sendBack}
         setUser={setUser}
         user={user}
         userName={userName}
-        uderModule={uderModule}
+        userModule={userModule}
       />
       <main className="main_container">
         <div className="box_main">

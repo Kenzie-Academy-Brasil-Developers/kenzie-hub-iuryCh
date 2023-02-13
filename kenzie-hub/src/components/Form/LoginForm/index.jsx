@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api.js";
 
@@ -24,6 +24,15 @@ function LoginForm({setUser}) {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const refEye = useRef(null)
+  
+  useEffect(() => {
+    function showInputPassword(event){
+      console.log(refEye)
+    }
+    window.addEventListener('mousedown', showInputPassword)
+  }, [])
+
   async function loginUser(data) {
     try {
       setLoading(true);
@@ -60,7 +69,7 @@ function LoginForm({setUser}) {
         {...register("password")}
       />
       {<p className="error_msg-p2" > {errors.password?.message} </p>}
-      <img className="eye_img" src={eye} alt="eye" />
+      <img className="eye_img" src={eye} alt="eye" ref={refEye} />
       <button className="btn_entry">Entrar</button>
     </StyledForm>
   );

@@ -1,11 +1,11 @@
 import StyledHeader from "./style.js";
 
-function Header({ userName, uderModule }) {
+function Header({ userName, userModule }) {
  
   return (
     <StyledHeader>
       <h2>{userName}</h2>
-      <p> {uderModule} </p>
+      <p> {userModule} </p>
     </StyledHeader>
   );
 }
