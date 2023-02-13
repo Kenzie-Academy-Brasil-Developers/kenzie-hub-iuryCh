@@ -1,6 +1,7 @@
 import logo from "../../assets/imagens/Logo.svg";
 import StyledRegister from "./style.js";
 
+
 import RegisterForm from "../../components/Form/RegisterForm";
 
 function RegisterPage({ sendLoginPage }) {

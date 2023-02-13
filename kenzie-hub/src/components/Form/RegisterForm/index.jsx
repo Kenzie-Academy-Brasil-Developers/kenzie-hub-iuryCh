@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api.js";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const schema = yup
   .object({
@@ -132,7 +133,13 @@ function RegisterForm() {
         <option value="Quarto módulo (Backend Avançado)">Quarto Módulo</option>
       </select>
       <p> {errors.course_module?.message} </p>
-      <button>Cadastrar</button>
+      {loading && <ScaleLoader color={"#59323F"} loading={loading} size={50} />}
+      <button
+        style={loading? {backgroundColor:"#59323F"}:null}
+        disabled={loading ? true : false}
+      >
+        Cadastrar
+      </button>
     </Styledform>
   );
 }
