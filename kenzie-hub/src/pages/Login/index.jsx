@@ -11,11 +11,9 @@ function LoginPage({ sendToDashboard, setUser }) {
         <div className="form">
           <h2>Login</h2>
           <LoginForm sendToDashboard={sendToDashboard} setUser={setUser} />
-          <p className="footer_msg" >Ainda não possui uma conta ? </p>
+          <p className="footer_msg">Ainda não possui uma conta ? </p>
 
-          <Link to={"/Register"}>
-            <button>Cadastrar-se</button>
-          </Link>
+          <Link to={"/Register"}>Cadastrar-se</Link>
         </div>
       </div>
     </StyledLogin>

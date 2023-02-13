@@ -10,23 +10,25 @@ const StyledLogin = styled.div`
   gap: 20px;
 
   a {
+    
+    height: 40px;
     width: 100%;
 
-    button {
-      height: 40px;
-      width: 100%;
+    border: none;
 
-      border: none;
+    background-color: var(--Grey-1);
+    font: var(--Headline-regular);
 
-      background-color: var(--Grey-1);
-      font: var(--Headline-regular);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      color: var(--Grey-0);
+    color: var(--Grey-0);
 
-      :hover {
-        background-color: var(--Grey-2);
-      }
+    :hover {
+      background-color: var(--Grey-2);
     }
+    /* } */
   }
 
   .box-form {
