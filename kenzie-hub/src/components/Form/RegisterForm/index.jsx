@@ -93,7 +93,7 @@ function RegisterForm() {
       />
 
       <Input
-        label="Senha"
+        label="Confirmar senha"
         id="confirmPassword"
         type="password"
         error={errors.confirmPassword?.message}
@@ -135,7 +135,7 @@ function RegisterForm() {
       <p> {errors.course_module?.message} </p>
       {loading && <ScaleLoader color={"#59323F"} loading={loading} size={50} />}
       <button
-        style={loading? {backgroundColor:"#59323F"}:null}
+        style={loading ? { backgroundColor: "#59323F" } : null}
         disabled={loading ? true : false}
       >
         Cadastrar
