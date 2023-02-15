@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const Globalstyles = createGlobalStyle`
-   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+   /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); */
 
     :root {
         
@@ -31,8 +31,6 @@ const Globalstyles = createGlobalStyle`
         --Headline-italic: italic 400 .75rem "inter", sans-serif;
 
         --base-radius: 4px;
-
-
     }
     
     body{

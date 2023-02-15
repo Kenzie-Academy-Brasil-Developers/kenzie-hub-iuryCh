@@ -9,7 +9,7 @@ const Styledform = styled.form`
   gap: 20px;
 
   label {
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-12);
     color: var(--Grey-0);
   }
 
@@ -43,7 +43,7 @@ const Styledform = styled.form`
     background-color: var(--Color-primary);
     color: white;
 
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-16);
     :hover {
       background-color: var(--Color-primary-Focus);
     }

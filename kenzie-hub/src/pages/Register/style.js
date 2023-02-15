@@ -64,7 +64,7 @@ const StyledRegister = styled.main`
     }
 
     .box_form--subtitle {
-      font: var(--Headline-regular);
+      font: var(--Headline-regular-12);
       color: var(--Grey-1);
     }
   }

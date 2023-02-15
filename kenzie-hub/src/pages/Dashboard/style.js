@@ -32,6 +32,8 @@ const StyledMain = styled.div`
       background-color: var(--Grey-3);
 
       color: white;
+
+      font: var(--Headline-regular-12);
     }
   }
   .main_container {
@@ -52,7 +54,9 @@ const StyledMain = styled.div`
 
       p {
         color: var(--Grey-0);
-        font: var(--Headline-regular-16);
+        /* font: var(--Headline-regular-16); */
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
       }
     }
   }

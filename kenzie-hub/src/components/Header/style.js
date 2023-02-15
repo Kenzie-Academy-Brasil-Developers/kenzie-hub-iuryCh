@@ -25,7 +25,8 @@ const StyledHeader = styled.header`
     align-self: flex-start;
 
     color: var(--Grey-1);
-    font: var(--Headline-regular);
+
+    font: var(--Headline-regular-12);
   }
   @media (min-width: 600px) {
     padding-inline: 100px;

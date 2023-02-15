@@ -13,7 +13,7 @@ const StyledForm = styled.form`
 
   label {
     color: var(--Grey-1);
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-12);
   }
 
   input {
@@ -31,6 +31,10 @@ const StyledForm = styled.form`
     :focus {
       border: 1px solid var(--Grey-0);
     }
+
+    ::placeholder {
+      font: var(--Headline-regular-12);
+    }
   }
   .error_msg-p1,
   .error_msg-p2 {
@@ -40,7 +44,7 @@ const StyledForm = styled.form`
 
   .eye_img {
     position: absolute;
-    top: 129px;
+    top: 123px;
     left: 234px;
 
     cursor: pointer;
@@ -58,7 +62,7 @@ const StyledForm = styled.form`
     background-color: var(--Color-primary);
     color: white;
 
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-12);
 
     :hover {
       background-color: var(--Color-primary-Focus);
