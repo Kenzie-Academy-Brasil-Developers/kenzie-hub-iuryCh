@@ -1,23 +1,21 @@
 import StyledForm from "./style.js";
-import eye from "../../../assets/imagens/eye.svg";
-import { toast } from "react-toastify";
+import ScaleLoader from "react-spinners/ScaleLoader";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../../services/api.js";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../Providers/UserContexts.jsx";
 
 const schema = yup.object({
   email: yup.string().required("* Campo Obrigatório").email("Deve ser email"),
   password: yup.string().required("* Campo obrigatório"),
 });
 
-function LoginForm({ setUser }) {
-  const [loading, setLoading] = useState(false);
+function LoginForm() {
+  const { loginUser, loading } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,23 +24,6 @@ function LoginForm({ setUser }) {
     resolver: yupResolver(schema),
   });
 
-  async function loginUser(data) {
-    try {
-      setLoading(true);
-      const response = await api.post("/sessions", data);
-      setUser(response.data.user);
-      localStorage.setItem("@TOKEN", response.data.token);
-      localStorage.setItem("@USERID", response.data.user.id);
-      localStorage.setItem("@usename", response.data.user.name);
-      localStorage.setItem("@usemodule", response.data.user.course_module);
-      navigate("/Dashboard");
-    } catch (error) {
-      console.error(error);
-      toast.error("Ops, dados inválidos!");
-    } finally {
-      setLoading(false);
-    }
-  }
   return (
     <StyledForm onSubmit={handleSubmit(loginUser)}>
       <label htmlFor="email">Email</label>
@@ -60,18 +41,27 @@ function LoginForm({ setUser }) {
         id="password"
         placeholder="Digite sua senha"
         {...register("password")}
-       
       />
       {<p className="error_msg-p2"> {errors.password?.message} </p>}
-      <img
+      <span
         className="eye_img"
-        src={eye}
-        alt="eye"
         onClick={() => {
           setShowPassword(!showPassword);
         }}
-      />
-      <button className="btn_entry">Entrar</button>
+      >
+        {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+      </span>
+      <button
+        className="btn_entry"
+        style={loading ? { backgroundColor: "#59323F" } : null}
+        disabled={loading ? true : false}
+      >
+        {loading ? (
+          <ScaleLoader color={"#F8F9FA"} loading={loading} size={15} />
+        ) : (
+          "Entrar"
+        )}
+      </button>
     </StyledForm>
   );
 }

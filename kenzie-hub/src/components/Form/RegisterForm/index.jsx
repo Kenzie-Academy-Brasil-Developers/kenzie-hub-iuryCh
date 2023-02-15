@@ -1,13 +1,11 @@
 import Styledform from "./style.js";
 import Input from "../../Input";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
-import api from "../../../services/api.js";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { useContext } from "react";
+import { UserContext } from "../../../Providers/UserContexts.jsx";
 
 const schema = yup
   .object({
@@ -35,8 +33,8 @@ const schema = yup
   .required();
 
 function RegisterForm() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const { userRegister, loading } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -44,24 +42,6 @@ function RegisterForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  async function userRegister(data) {
-    try {
-      setLoading(true);
-      await api.post("/users", data);
-      toast.success("Cadastro realizado com sucesso!");
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      {
-        error.response.data.message == "Email already exists"
-          ? toast.error(`Email já cadastrado`)
-          : toast.error("Ops, algo deu errado!");
-      }
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <Styledform onSubmit={handleSubmit(userRegister)}>

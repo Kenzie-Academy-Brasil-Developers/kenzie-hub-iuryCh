@@ -40,7 +40,7 @@ const StyledForm = styled.form`
 
   .eye_img {
     position: absolute;
-    top: 131px;
+    top: 129px;
     left: 234px;
 
     cursor: pointer;

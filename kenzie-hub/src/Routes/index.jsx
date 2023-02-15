@@ -5,11 +5,8 @@ import LoginPage from "../pages/Login";
 import PageNotFound from "../pages/NotFound";
 import RegisterPage from "../pages/Register";
 
-function AppRoutes({setUser, user}) {
+function AppRoutes() {
   const navigate = useNavigate();
-  function sendBack() {
-    navigate(-1);
-  }
 
   function sendLoginPage() {
     navigate("/");
@@ -17,11 +14,8 @@ function AppRoutes({setUser, user}) {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<LoginPage setUser={setUser} />}
-      />
-      <Route path="/Dashboard" element={<Dashboard sendBack={sendBack} setUser={setUser} user={user} />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
       <Route
         path="/Register"
         element={<RegisterPage sendLoginPage={sendLoginPage} />}

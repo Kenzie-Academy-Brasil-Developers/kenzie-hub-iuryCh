@@ -4,10 +4,11 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
+
   return (
     <div className="App">
-      <AppRoutes setUser={setUser} user={user} />
+      <AppRoutes />
 
       <ToastContainer
         position="top-center"

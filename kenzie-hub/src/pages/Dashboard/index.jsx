@@ -1,36 +1,13 @@
 import logo from "../../assets/imagens/Logo.svg";
 import Header from "../../components/Header";
 import StyledMain from "./style.js";
-import { useEffect } from "react";
-import api from "../../services/api.js";
+import { useContext } from "react";
+import { UserContext } from "../../Providers/UserContexts.jsx";
 
-function Dashboard({ sendBack, setUser, user }) {
+function Dashboard() {
   const userName = localStorage.getItem("@usename");
   const userModule = localStorage.getItem("@usemodule");
-
-  function logOut() {
-    setUser(null);
-    localStorage.clear();
-    sendBack();
-  }
-
-  useEffect(() => {
-    async function logedUser() {
-      const token = localStorage.getItem("@TOKEN");
-
-      try {
-        const response = await api.get("/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    logedUser();
-  }, []);
+  const { logOut, setUser, user, sendBack } = useContext(UserContext);
 
   return (
     <StyledMain>

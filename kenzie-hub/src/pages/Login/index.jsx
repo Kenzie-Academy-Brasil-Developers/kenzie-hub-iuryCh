@@ -4,6 +4,7 @@ import StyledLogin from "./style.js";
 import LoginForm from "../../components/Form/LoginForm";
 
 function LoginPage({ sendToDashboard, setUser }) {
+  
   return (
     <StyledLogin>
       <img src={logo} alt="logo kenzie hub" />
@@ -13,7 +14,7 @@ function LoginPage({ sendToDashboard, setUser }) {
           <LoginForm sendToDashboard={sendToDashboard} setUser={setUser} />
           <p className="footer_msg">Ainda não possui uma conta ? </p>
 
-          <Link to={"/Register"}>Cadastrar-se</Link>
+          <Link to={ "/Register"}>Cadastrar-se</Link>
         </div>
       </div>
     </StyledLogin>
