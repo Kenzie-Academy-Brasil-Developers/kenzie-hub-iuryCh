@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledMain = styled.div`
   min-height: 100vh;
-  
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -11,12 +11,19 @@ const StyledMain = styled.div`
     height: 70px;
     width: 100%;
 
+    position: fixed;
+    top: 0;
+
+    background-color: var(--Grey-4);
+
+    padding-inline: 10px;
+
     border-bottom: 1px solid var(--Grey-3);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-inline: 10px;
+
     button {
       height: 30px;
       width: 50px;
@@ -49,10 +56,15 @@ const StyledMain = styled.div`
       }
     }
   }
-  @media (min-width: 600px){
-    
-    nav{
+  @media (min-width: 600px) {
+    nav {
       padding-inline: 100px;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    nav {
+      max-width: 1000px;
     }
   }
 `;
