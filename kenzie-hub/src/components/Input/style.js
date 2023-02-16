@@ -6,7 +6,7 @@ const StyledInput = styled.div`
   gap: 15px;
 
   label {
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-12);
     color: var(--Grey-0);
   }
   input {
