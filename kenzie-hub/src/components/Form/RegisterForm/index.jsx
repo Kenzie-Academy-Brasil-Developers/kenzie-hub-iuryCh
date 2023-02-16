@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { useContext } from "react";
-import { UserContext } from "../../../Providers/UserContexts.jsx";
+import { UserContext } from "../../../providers/UserContext.jsx";
 
 const schema = yup
   .object({

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,8 +10,33 @@ function UserProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [techs, setTechs] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("@TOKEN");
+
+    if (token) {
+      async function autoLoginUser() {
+        try {
+          const response = await api.get("/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          setUser(response.data);
+          setTechs(response.data.techs);
+        } catch {
+          localStorage.removeItem("@TOKEN");
+        }
+      }
+      autoLoginUser();
+    } else {
+      sendBack();
+    }
+  }, []);
 
   function sendBack() {
     navigate(-1);
@@ -22,10 +47,9 @@ function UserProvider({ children }) {
       setLoading(true);
       const response = await api.post("/sessions", data);
       setUser(response.data.user);
+      setTechs(response.data.user.techs);
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
-      localStorage.setItem("@usename", response.data.user.name);
-      localStorage.setItem("@usemodule", response.data.user.course_module);
       navigate("/Dashboard");
     } catch (error) {
       console.error(error);
@@ -54,28 +78,10 @@ function UserProvider({ children }) {
   }
 
   function logOut() {
-    setUser(null);
+    setUser({});
     localStorage.clear();
     sendBack();
   }
-
-  // useEffect(() => {
-  //   async function logedUser() {
-  //     const token = localStorage.getItem("@TOKEN");
-
-  //     try {
-  //       const response = await api.get("/profile", {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-  //       setUser(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   logedUser();
-  // }, []);
 
   return (
     <UserContext.Provider
@@ -88,7 +94,8 @@ function UserProvider({ children }) {
         userRegister,
         logOut,
         setUser,
-        user
+        user,
+        techs,
       }}
     >
       {children}

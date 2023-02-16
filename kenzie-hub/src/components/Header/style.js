@@ -44,7 +44,12 @@ const StyledHeader = styled.header`
   }
 
   @media (min-width: 1000px) {
-    max-width: 1000px;
+   padding-inline: 200px;
   }
+  @media (min-width: 1170px) {
+   padding-inline: 250px;
+  }
+
+
 `;
 export default StyledHeader;

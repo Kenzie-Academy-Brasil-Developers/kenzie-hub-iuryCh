@@ -17,7 +17,7 @@ const StyledLogin = styled.div`
     border: none;
 
     background-color: var(--Grey-1);
-    font: var(--Headline-regular);
+    font: var(--Headline-regular-12);
 
     display: flex;
     align-items: center;

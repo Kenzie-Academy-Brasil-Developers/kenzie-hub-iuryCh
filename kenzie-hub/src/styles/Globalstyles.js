@@ -23,7 +23,7 @@ const Globalstyles = createGlobalStyle`
 
         /* Typography */
         --Title-18: 700 1.125rem "Inter", sans-serif;
-        --Title-16: 700 1rem "Inter", sans-serif;
+        --Title-16: 600 1rem "Inter", sans-serif;
         --Title-14: 700 .875rem "Inter", sans-serif;
         --Headline-bold: 700 .75rem "Inter", sans-serif;
         --Headline-regular-16: 400 1rem "Inter", sans-serif;
