@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const Globalstyles = createGlobalStyle`
-   /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); */
 
     :root {
         

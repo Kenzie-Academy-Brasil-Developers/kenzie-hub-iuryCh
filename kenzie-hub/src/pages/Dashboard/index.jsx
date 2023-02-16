@@ -12,7 +12,7 @@ import { TechContext } from "../../providers/TechContext";
 function Dashboard() {
   const { openModal, modalIsOpen } = useContext(TechContext);
   const { logOut, sendBack, techs } = useContext(UserContext);
-  // console.log(modalIsOpen);
+  //
   return (
     <StyledMain>
       {modalIsOpen && <CreateTechModal />}
