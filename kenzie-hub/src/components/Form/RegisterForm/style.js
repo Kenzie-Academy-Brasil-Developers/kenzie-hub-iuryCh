@@ -10,7 +10,7 @@ const Styledform = styled.form`
 
   label {
     font: var(--Headline-regular-12);
-    color: var(--Grey-2);
+    color: var(--Grey-0);
   }
 
   select {
