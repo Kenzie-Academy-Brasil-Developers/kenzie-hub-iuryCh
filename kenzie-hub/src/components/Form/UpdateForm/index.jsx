@@ -41,7 +41,7 @@ function UpdateForm() {
         label="Nome do projeto"
         type="text"
         id="title"
-        placeholder={editTech.techTitle}
+        placeholder="Nome do projeto"
         register={register}
         disabled={true}
       />

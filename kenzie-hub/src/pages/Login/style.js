@@ -10,11 +10,11 @@ const StyledLogin = styled.div`
   gap: 20px;
 
   a {
-    
     height: 40px;
     width: 100%;
 
     border: none;
+    border-radius: var(--base-radius);
 
     background-color: var(--Grey-1);
     font: var(--Headline-regular-12);
@@ -36,6 +36,8 @@ const StyledLogin = styled.div`
 
     height: 420px;
     width: 300px;
+
+    border-radius: var(--base-radius);
 
     background-color: var(--Grey-3);
 

@@ -22,6 +22,7 @@ const StyledForm = styled.form`
     height: 40px;
 
     border: none;
+    border-radius: var(--base-radius);
 
     padding-inline: 13px;
 

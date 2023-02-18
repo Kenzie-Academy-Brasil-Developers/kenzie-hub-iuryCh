@@ -45,6 +45,8 @@ const StyledRegister = styled.main`
   .box_groundcolor {
     padding: 20px 0;
 
+    border-radius: var(--base-radius);
+
     width: 270px;
 
     background-color: var(--Grey-3);
