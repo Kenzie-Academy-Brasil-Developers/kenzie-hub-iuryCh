@@ -29,17 +29,21 @@ function UpdateForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      title: editTech.techTitle,
+      status: editTech.techStatus,
+    },
   });
-
+  console.log(editTech);
   return (
     <form className="modal_create--form" onSubmit={handleSubmit(updateTech)}>
       <Input
         label="Nome do projeto"
         type="text"
         id="title"
-        placeholder="Nome do projeto"
+        placeholder={editTech.techTitle}
         register={register}
-        // disabled={true}
+        disabled={true}
       />
       <div>
         <label htmlFor="status">Selecione status</label>

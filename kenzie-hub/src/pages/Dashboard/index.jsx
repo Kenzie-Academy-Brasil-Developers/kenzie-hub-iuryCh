@@ -12,12 +12,12 @@ import Card from "../../components/Card";
 
 function Dashboard() {
   const { logOut, sendBack, techs, loading } = useContext(UserContext);
-  const { setEditTech, editTech } = useContext(TechContext);
+  const { setEditTech } = useContext(TechContext);
 
   function getValues(event) {
     const techId = event.target.id;
-    const techTitle = event.target.title;
-    const techStatus = event.target.status;
+    const techTitle = event.target.dataset.title;
+    const techStatus = event.target.dataset.status;
     setEditTech({ techId, techTitle, techStatus });
     openUpdateModal();
   }

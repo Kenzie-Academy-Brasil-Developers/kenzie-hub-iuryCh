@@ -95,6 +95,7 @@ function TechProvider({ children }) {
 
       setTechs(techEdited);
       toast.success("Parabens, você está progredindo!");
+      closeUpdateModal();
     } catch (error) {
       console.error(error);
       toast.error("Ops, algo deu errado!");
