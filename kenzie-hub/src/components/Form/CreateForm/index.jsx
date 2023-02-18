@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TechContext } from "../../../providers/TechContext";
+import Input from "../../Input";
 
 const schema = yup.object({
   title: yup.string().required("* campo obrigatório"),
@@ -13,7 +14,7 @@ const schema = yup.object({
 
 function CreateForm({ createTech }) {
   const { loading } = useContext(UserContext);
-  const { closeCreateModal } = useContext(TechContext);
+  const { closeCreateModal, editTech } = useContext(TechContext);
 
   useEffect(() => {
     if (loading) {
@@ -31,16 +32,14 @@ function CreateForm({ createTech }) {
 
   return (
     <form className="modal_create--form" onSubmit={handleSubmit(createTech)}>
-      <div>
-        <label htmlFor="title">Nome</label>
-        <input
-          type="text"
-          id="title"
-          placeholder="Nome da tecnologia"
-          {...register("title")}
-        />
-        {errors && <p> {errors.title?.message} </p>}
-      </div>
+      <Input
+        label="Nome"
+        type={"text"}
+        id="title"
+        error={errors.title?.message}
+        placeholder="Nome da tecnologia"
+        register={register}
+      />
       <div>
         <label htmlFor="status">Selecione status</label>
         <select id="status" {...register("status")}>
@@ -52,7 +51,7 @@ function CreateForm({ createTech }) {
         <BiChevronDown fontSize={20} className="arrow_down" />
         {errors && <p> {errors.status?.message} </p>}
       </div>
-      <button type="submit">Cadastrar tecnologial</button>
+      <button>Cadastrar tecnologial</button>
     </form>
   );
 }

@@ -12,12 +12,13 @@ import Card from "../../components/Card";
 
 function Dashboard() {
   const { logOut, sendBack, techs, loading } = useContext(UserContext);
-  const { setEditTech } = useContext(TechContext);
+  const { setEditTech, editTech } = useContext(TechContext);
 
-  function handleEditTech(event) {
+  function getValues(event) {
     const techId = event.target.id;
-    setEditTech(techId);
-
+    const techTitle = event.target.title;
+    const techStatus = event.target.status;
+    setEditTech({ techId, techTitle, techStatus });
     openUpdateModal();
   }
 
@@ -56,7 +57,7 @@ function Dashboard() {
               techs.map((tech) => (
                 <Card
                   key={tech.id}
-                  onClick={(event) => handleEditTech(event)}
+                  onClick={(event) => getValues(event)}
                   title={tech.title}
                   status={tech.status}
                   id={tech.id}
@@ -64,7 +65,7 @@ function Dashboard() {
               ))
             ) : (
               <p className="empty_techs">
-                Ainda não foram criadas tecnologias para esse usuário{" "}
+                Ainda não foram criadas tecnologias para esse usuário
               </p>
             )}
           </ul>

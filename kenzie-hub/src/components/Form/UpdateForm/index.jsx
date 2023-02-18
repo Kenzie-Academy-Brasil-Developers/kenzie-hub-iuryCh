@@ -5,15 +5,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { TechContext } from "../../../providers/TechContext";
+import Input from "../../Input";
 
 const schema = yup.object({
+  title: yup.string(),
   status: yup.string().required("* campo obrigatório"),
 });
 
 function UpdateForm() {
   const { loading } = useContext(UserContext);
-  const { closeCreateModal, editTech, deleteTech } = useContext(TechContext);
-  
+  const { closeCreateModal, editTech, deleteTech, updateTech } =
+    useContext(TechContext);
+
   useEffect(() => {
     if (loading) {
       closeCreateModal();
@@ -26,24 +29,18 @@ function UpdateForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      title: editTech.title,
-      status: editTech.status,
-    },
   });
 
   return (
-    <form className="modal_create--form">
-      <div>
-        <label htmlFor="title">Nome</label>
-        <input
-          type="text"
-          id="title"
-          placeholder="Nome da tecnologia"
-          {...register("title")}
-          disabled
-        />
-      </div>
+    <form className="modal_create--form" onSubmit={handleSubmit(updateTech)}>
+      <Input
+        label="Nome do projeto"
+        type="text"
+        id="title"
+        placeholder="Nome do projeto"
+        register={register}
+        // disabled={true}
+      />
       <div>
         <label htmlFor="status">Selecione status</label>
         <select id="status" {...register("status")}>
@@ -63,7 +60,7 @@ function UpdateForm() {
           className="erase"
           type="button"
           id="erase_btn"
-          onClick={() => deleteTech(editTech)}
+          onClick={() => deleteTech(editTech.techId)}
         >
           Excluir
         </button>

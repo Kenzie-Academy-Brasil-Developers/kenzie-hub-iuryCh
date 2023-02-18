@@ -39,7 +39,6 @@ function TechProvider({ children }) {
       });
 
       setEditTech(response.data);
-
       setTechs([...techs, response.data]);
       toast.success("Tecnologia criada, Parabens!");
     } catch (error) {
@@ -48,11 +47,12 @@ function TechProvider({ children }) {
       setLoading(false);
     }
   }
-
+  // console.log(techs); //id, status e title
   async function deleteTech(techId) {
+    const token = localStorage.getItem("@TOKEN");
+
     try {
       setLoading(true);
-      const token = localStorage.getItem("@TOKEN");
 
       // atualização do back-end(banco de dados da API)
       await api.delete(`/users/techs/${techId}`, {
@@ -73,6 +73,36 @@ function TechProvider({ children }) {
     }
   }
 
+  async function updateTech(data) {
+    const token = localStorage.getItem("@TOKEN");
+    const idTech = editTech.techId;
+
+    try {
+      setLoading(true);
+      await api.put(`/users/techs/${idTech}`, data, {
+        headers: {
+          Authorization: ` Bearer ${token}`,
+        },
+      });
+
+      const techEdited = techs.map((tech) => {
+        console.log(tech);
+        if (tech.id == idTech) {
+          tech.status = data.status;
+        }
+        return tech;
+      });
+
+      setTechs(techEdited);
+      toast.success("Parabens, você está progredindo!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Ops, algo deu errado!");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <TechContext.Provider
       value={{
@@ -87,6 +117,7 @@ function TechProvider({ children }) {
         setEditTech,
         editTech,
         deleteTech,
+        updateTech,
       }}
     >
       {children}
