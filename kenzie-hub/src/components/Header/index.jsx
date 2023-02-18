@@ -7,12 +7,8 @@ function Header() {
 
   return (
     <StyledHeader>
-      {user.length > 0 ? null : (
-        <>
-          <h2>{user.name}</h2>
-          <p> {user.course_module} </p>
-        </>
-      )}
+      <h2>{user.name}</h2>
+      <p> {user.course_module} </p>
     </StyledHeader>
   );
 }

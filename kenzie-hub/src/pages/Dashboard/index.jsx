@@ -2,20 +2,39 @@ import logo from "../../assets/imagens/Logo.svg";
 import Header from "../../components/Header";
 import StyledMain from "./style.js";
 import ScaleLoader from "react-spinners/ScaleLoader";
-// import StyledModal from "../../components/Modal/style";
-import CreateTechModal from "../../components/Modal";
+import CreateTechModal from "../../components/Modal/CreateTechModal";
+import UpdateTechModal from "../../components/Modal/UpdateTechModal";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext.jsx";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { TechContext } from "../../providers/TechContext";
+import Card from "../../components/Card";
 
 function Dashboard() {
-  const { openModal, modalIsOpen } = useContext(TechContext);
-  const { logOut, sendBack, techs } = useContext(UserContext);
-  //
+  const { logOut, sendBack, techs, loading } = useContext(UserContext);
+  const { setEditTech } = useContext(TechContext);
+
+  function handleEditTech(event) {
+    const techId = event.target.id;
+    setEditTech(techId);
+
+    openUpdateModal();
+  }
+
+  const {
+    openCreateModal,
+    openUpdateModal,
+    createModalIsOpen,
+    updateModalIsOpen,
+  } = useContext(TechContext);
+
   return (
     <StyledMain>
-      {modalIsOpen && <CreateTechModal />}
+      {createModalIsOpen ? (
+        <CreateTechModal />
+      ) : updateModalIsOpen ? (
+        <UpdateTechModal />
+      ) : null}
 
       <nav className="box_logout">
         <img src={logo} alt="logo kenzie hub" />
@@ -25,21 +44,28 @@ function Dashboard() {
       <main className="main_container">
         <div className="main_container--header">
           <h2>Tecnologias</h2>
-          <button onClick={() => openModal()}>
+          <button onClick={openCreateModal}>
             <BsPlusSquareFill size={25} color={"#212529"} />
           </button>
         </div>
+
         <section className="main_container--body">
           <ul className="box_list">
+            {loading ? <ScaleLoader color={"#F8F9FA"} size={15} /> : null}
             {techs.length > 0 ? (
               techs.map((tech) => (
-                <li key={tech.id} className="box-list--card">
-                  <p>{tech.title}</p>
-                  <span> {tech.status} </span>
-                </li>
+                <Card
+                  key={tech.id}
+                  onClick={(event) => handleEditTech(event)}
+                  title={tech.title}
+                  status={tech.status}
+                  id={tech.id}
+                />
               ))
             ) : (
-              <ScaleLoader color={"#F8F9FA"} size={15} />
+              <p className="empty_techs">
+                Ainda não foram criadas tecnologias para esse usuário{" "}
+              </p>
             )}
           </ul>
         </section>

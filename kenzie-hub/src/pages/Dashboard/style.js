@@ -83,6 +83,17 @@ const StyledMain = styled.div`
         padding: 12px;
 
         background-color: var(--Grey-3);
+
+        li{
+          cursor: pointer;
+          :hover{
+            background-color: var(--Grey-2);
+          }
+        }
+
+        .empty_techs{
+          color: var(--Grey-1);
+        }
       }
       .box-list--card {
         min-height: 50px;

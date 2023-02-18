@@ -98,7 +98,9 @@ function RegisterForm() {
         placeholder="Opção de contato"
         register={register}
       />
-      <label htmlFor="course_module">Selecionar Módulo</label>
+      <label className="select_label" htmlFor="course_module">
+        Selecionar Módulo
+      </label>
       <select id="course_module" {...register("course_module")}>
         <option value="">Selecione um módulo</option>
         <option value="Primeiro módulo (Introdução ao Frontend)">
@@ -112,7 +114,7 @@ function RegisterForm() {
         </option>
         <option value="Quarto módulo (Backend Avançado)">Quarto Módulo</option>
       </select>
-      <p> {errors.course_module?.message} </p>
+      {errors && <p> {errors.course_module?.message} </p>}
       {loading && <ScaleLoader color={"#59323F"} loading={loading} size={50} />}
       <button
         style={loading ? { backgroundColor: "#59323F" } : null}

@@ -8,7 +8,7 @@ const Styledform = styled.form`
 
   gap: 20px;
 
-  label {
+  .select_label {
     font: var(--Headline-regular-12);
     color: var(--Grey-0);
   }
@@ -44,6 +44,7 @@ const Styledform = styled.form`
     color: white;
 
     font: var(--Headline-regular-16);
+    
     :hover {
       background-color: var(--Color-primary-Focus);
     }

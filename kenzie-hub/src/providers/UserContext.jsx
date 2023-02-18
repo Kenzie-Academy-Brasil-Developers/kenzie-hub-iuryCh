@@ -7,7 +7,7 @@ import api from "../services/api.js";
 export const UserContext = createContext({});
 
 function UserProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [techs, setTechs] = useState([]);
@@ -46,6 +46,7 @@ function UserProvider({ children }) {
     try {
       setLoading(true);
       const response = await api.post("/sessions", data);
+
       setUser(response.data.user);
       setTechs(response.data.user.techs);
       localStorage.setItem("@TOKEN", response.data.token);
@@ -78,7 +79,7 @@ function UserProvider({ children }) {
   }
 
   function logOut() {
-    setUser({});
+    setUser([]);
     localStorage.clear();
     sendBack();
   }
@@ -96,6 +97,7 @@ function UserProvider({ children }) {
         setUser,
         user,
         techs,
+        setTechs,
       }}
     >
       {children}
