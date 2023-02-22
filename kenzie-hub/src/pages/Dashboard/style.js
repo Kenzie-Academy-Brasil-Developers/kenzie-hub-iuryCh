@@ -34,6 +34,10 @@ const StyledMain = styled.div`
       color: white;
 
       font: var(--Headline-regular-12);
+
+      :hover{
+        background-color: var(--Grey-2);
+      }
     }
   }
   .main_container {
@@ -65,6 +69,9 @@ const StyledMain = styled.div`
         border-radius: var(--base-radius);
         height: 25px;
         border: none;
+        :hover{
+          background-color: var(--Grey-0);
+        }
       }
     }
 

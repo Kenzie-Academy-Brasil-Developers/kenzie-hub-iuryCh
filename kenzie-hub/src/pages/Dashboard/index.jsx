@@ -11,7 +11,7 @@ import { TechContext } from "../../providers/TechContext";
 import Card from "../../components/Card";
 
 function Dashboard() {
-  const { logOut, sendBack, techs, loading } = useContext(UserContext);
+  const { logOut, techs, loading } = useContext(UserContext);
   const { setEditTech } = useContext(TechContext);
 
   function getValues(event) {
@@ -37,11 +37,11 @@ function Dashboard() {
         <UpdateTechModal />
       ) : null}
 
-      <nav className="box_logout">
+      <nav>
         <img src={logo} alt="logo kenzie hub" />
         <button onClick={logOut}>Sair</button>
       </nav>
-      <Header sendBack={sendBack} />
+      <Header />
       <main className="main_container">
         <div className="main_container--header">
           <h2>Tecnologias</h2>

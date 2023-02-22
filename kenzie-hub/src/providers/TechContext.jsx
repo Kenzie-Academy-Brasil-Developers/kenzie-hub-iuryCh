@@ -47,21 +47,19 @@ function TechProvider({ children }) {
       setLoading(false);
     }
   }
-  // console.log(techs); //id, status e title
+
   async function deleteTech(techId) {
     const token = localStorage.getItem("@TOKEN");
 
     try {
       setLoading(true);
 
-      // atualização do back-end(banco de dados da API)
       await api.delete(`/users/techs/${techId}`, {
         headers: {
           Authorization: ` Bearer ${token}`,
         },
       });
 
-      // atualização do front-end (apresentação da tela)
       const filteredTechs = techs.filter((tech) => tech.id !== techId);
       setTechs(filteredTechs);
       closeUpdateModal();
@@ -86,7 +84,6 @@ function TechProvider({ children }) {
       });
 
       const techEdited = techs.map((tech) => {
-        console.log(tech);
         if (tech.id == idTech) {
           tech.status = data.status;
         }
@@ -110,7 +107,6 @@ function TechProvider({ children }) {
         openCreateModal,
         closeCreateModal,
         createModalIsOpen,
-        setCreateModalIsOpen,
         createTech,
         openUpdateModal,
         closeUpdateModal,

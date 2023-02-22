@@ -7,7 +7,7 @@ import api from "../services/api.js";
 export const UserContext = createContext({});
 
 function UserProvider({ children }) {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [techs, setTechs] = useState([]);
@@ -33,14 +33,8 @@ function UserProvider({ children }) {
         }
       }
       autoLoginUser();
-    } else {
-      sendBack();
     }
   }, []);
-
-  function sendBack() {
-    navigate(-1);
-  }
 
   async function loginUser(data) {
     try {
@@ -80,8 +74,8 @@ function UserProvider({ children }) {
 
   function logOut() {
     setUser([]);
+    navigate("/");
     localStorage.clear();
-    sendBack();
   }
 
   return (

@@ -3,7 +3,7 @@ import { UserContext } from "../../providers/UserContext.jsx";
 import StyledHeader from "./style.js";
 
 function Header() {
-  const { user, loading } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <StyledHeader>

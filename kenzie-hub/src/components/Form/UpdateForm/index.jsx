@@ -34,7 +34,7 @@ function UpdateForm() {
       status: editTech.techStatus,
     },
   });
-  console.log(editTech);
+
   return (
     <form className="modal_create--form" onSubmit={handleSubmit(updateTech)}>
       <Input

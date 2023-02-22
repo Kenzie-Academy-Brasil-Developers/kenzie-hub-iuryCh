@@ -32,23 +32,6 @@ const Styledform = styled.form`
     color: var(--Negative);
   }
 
-  button {
-    height: 40px;
-    width: 100%;
-
-    border: none;
-
-    align-self: center;
-
-    background-color: var(--Color-primary);
-    color: white;
-
-    font: var(--Headline-regular-16);
-    
-    :hover {
-      background-color: var(--Color-primary-Focus);
-    }
-  }
 
   @media (min-width: 720px) {
     .box_topregister,

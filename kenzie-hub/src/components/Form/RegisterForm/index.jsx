@@ -1,5 +1,6 @@
 import Styledform from "./style.js";
 import Input from "../../Input";
+import Button from "./Button/index.jsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -116,12 +117,12 @@ function RegisterForm() {
       </select>
       {errors && <p> {errors.course_module?.message} </p>}
       {loading && <ScaleLoader color={"#59323F"} loading={loading} size={50} />}
-      <button
+      <Button
+       
+        backGround={"#59323F"}
         style={loading ? { backgroundColor: "#59323F" } : null}
         disabled={loading ? true : false}
-      >
-        Cadastrar
-      </button>
+      />
     </Styledform>
   );
 }
